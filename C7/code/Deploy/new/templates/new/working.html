@@ -1,0 +1,182 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Doc</title>
+<style>
+.feed_table{
+        margin-left: 50px;
+        margin-right: 50px;
+}
+.index{
+    background:url("/static/image/index.png");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: 100% 100%;
+}
+
+.container1{
+  background: #f06d06;
+  padding: 40px;
+  margin: 20%;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  border: 2px solid #61dafb;
+  border-radius: 1em;
+}
+.form1{
+  background-color: #023349;
+}
+.legend1{
+  box-sizing: content-box;
+  padding: 10px;
+  border-radius: 1em;
+  background-color: #023349;
+  font-size: 20px;
+  font-weight: 900;
+  color: #61dafb;
+}
+.input1{
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #61dafb;
+}
+
+.fieldset1{
+  /* background-color: #ffff; */
+  border: 2px solid #61dafb;
+  border-radius: 1em;
+}
+
+.input1[type="submit"],input[type="reset"]{
+  font-size: 17px;
+  background-color: #61dafb;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.input1[type="submit"]:hover,input[type="reset"]:hover{
+  color: white;
+  background-color: #049ff8;
+
+}
+
+</style>
+</head>
+
+<body class="index">
+	<div>
+		<div style="background-color: #e9ecef;">
+		<a class="navbar-brand text-dark" style="margin-left: 30px;" href="{% url 'apredict' %}">Enter Details</a>
+		<a class="navbar-brand text-dark" style="margin-left: 1088px;" href="{% url 'feedback' %}">Feedback</a>
+	</div>
+	<h1 style="text-align:center; color: white;">INTRUSION DETECTION</h1>
+     <!-- Main Input For Receiving Query to our ML -->
+
+		<form class="form1 container1"  style="background-color: #c7e9fa;box-sizing: border-box;
+		font-family: proxima_nova_rgregular, Helvetica, Arial, sans-serif;" action="#">
+			<fieldset class="fieldset1">
+				<legend class="legend1">Enter your Detail</legend>
+
+        <label for="Crime">Crime</label><br>
+
+        <select class="input1" name="Crime" id="Crime">
+          <option value=1>Misuse of Debit Cards or Credit Cards</option>
+          <option value=0>Hacking into the Information System and Capturing Data</option>
+          <option value=2>Through Informatics Theft</option>
+        </select><br><br>
+
+        <label for="Gender">Gender</label><br>
+
+        <select class="input1" name="Gender" id="Gender">
+          <option value=1>Male</option>
+          <option value=0>Femal</option>
+        </select><br><br>
+
+        <label for="Age">Age</label><br>
+
+        <select class="input1" name="Age" id="Age">
+          <option value=0>27 and Under</option>
+          <option value=2>Between 28 and 37</option>
+          <option value=3>Between 38 and 50</option>
+          <option value=1>51 and Above</option>
+        </select><br><br>
+
+        <label for="Income">Income</label><br>
+
+        <select class="input1" name="Income" id="Income">
+          <option value=2>Middle</option>
+          <option value=1>Low</option>
+          <option value=0>High</option>
+        </select><br><br>
+
+
+        <label for="Job">Job</label><br>
+
+        <select class="input1" name="Job" id="Job">
+          <option value=9>Technical</option>
+          <option value=8>Student</option>
+          <option value=7>Retired</option>
+          <option value=6>Others</option>
+          <option value=5>Justice and Security</option>
+          <option value=4>IT Sector</option>
+          <option value=3>Housewife</option>
+          <option value=2>Health Sector Manager</option>
+          <option value=0>Education</option>
+          <option value=1>Finance Sector</option>
+        </select><br><br>
+
+        <label for="Maritalstatus">Maritalstatus</label><br>
+
+        <select class="input1" name="Maritalstatus" id="Maritalstatus">
+          <option value=0>Married</option>
+          <option value=1>Single</option>
+        </select><br><br>
+
+        <label for="Education">Education</label><br>
+
+        <select class="input1" name="Education" id="Education">
+          <option value=2>Primary Education</option>
+          <option value=1>High School</option>
+          <option value=3>Under Graduate</option>
+          <option value=0>Graduate</option>
+        </select><br><br>
+
+        <label for="Harm">Harm</label><br>
+
+        <select class="input1" name="Harm" id="Harm">
+          <option value=1>Fraud</option>
+          <option value=2>Internet Shopping Out of Knowledge</option>
+          <option value=3>Internet Shopping by Intoducing Himself as a Bank Clerk</option>
+          <option value=6>Withdrawing Money by Introducing Himself as a Bank Clerk</option>
+          <option value=5>Withdrawals Without Knowledge</option>
+          <option value=0>Do Moral Harm</option>
+          <option value=4>Threating / Blackmailing</option>
+        </select><br><br>
+
+        <label for="Attack">Attack</label><br>
+
+        <select class="input1" name="Attack" id="Attack">
+          <option value=1>Hacking Social Media Accounts</option>
+          <option value=2>Obtaining Electronic Bank Accounts</option>
+          <option value=3>Obtaining and Using Data in Digital Environment</option>
+          <option value=0>Copying Bank / ATM Cards</option>
+          <option value=4>Selling Counterfeit Products</option>
+        </select><br><br>
+
+				<input class="input1" type="submit" value="Submit"><br>
+			</fieldset>
+		</form>
+
+
+   <br>
+   <br>
+<div  style="background:skyblue;padding:2% 40%">
+   {{ prediction_text }}
+</div>
+ </div>
+
+ {% endblock content %}
+</body>
+</html>

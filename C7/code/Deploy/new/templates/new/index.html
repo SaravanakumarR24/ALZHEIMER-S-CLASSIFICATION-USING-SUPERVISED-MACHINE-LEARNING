@@ -1,0 +1,94 @@
+{% extends 'new/base.html' %}
+{% load static %}
+
+<!DOCTYPE html>
+<html >
+<!--From https://codepen.io/frytyler/pen/EGdtg-->
+<head>
+  <meta charset="UTF-8">
+  <title>TITLE</title>
+  {% load static %}
+  <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet"
+  <link href='https://fonts.googleapis.com/css?family=Pacifico' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Arimo' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Hind:300' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300' rel='stylesheet' type='text/css'>
+  
+</head>
+{% block content %}
+<body class="index">
+    <div>
+		<div style="background-color: #e9ecef;">
+		<a class="navbar-brand text-dark" style="margin-left: 30px;" href="{% url 'apredict' %}">Enter Details</a>
+		<a class="navbar-brand text-dark" style="margin-left: 1100px;" href="{% url 'feedback' %}">Feedback</a>
+	</div>
+ <div>
+	<div class="jumbotron">
+	<h1 style="text-align:center">ALZHEIMER'S CLASSIFICATION USING SUPERVISED MACHINE LEARNING TECHNIQUES</h1>
+	
+	</div>
+     <!-- Main Input For Receiving Query to our ML -->
+    <form class="form-group" action="{% url 'predict' %}"method="post">
+    	{% csrf_token %}
+		<div class="row">
+		<div class="gap col-md-6 ">
+
+			
+		<p style="color: white">Gender:</p>
+		<input style="color: white; padding-left: 50px;" type="radio" id="html" name="Gender" value=0 required="required">
+		<label style="color: white; padding-left: 50px;"  for="html">MALE</label><br>
+		<input style="color: white; padding-left: 50px;" type="radio" id="css" name="Gender" value=1 required="required">
+		<label style="color: white; padding-left: 50px;" for="css">FEMALE</label><br>
+
+
+		<label class="white"  for="">Age</label>
+		<input type="number" class="space form-control" step="0.000001" name="Age" placeholder="Age" required="required" /><br>
+
+		<label class="white" for="">EDUC</label>
+		<input type="number" class="space form-control" step="0.0000001" name="EDUC" placeholder="Enter data between 6 to 23" required="required" /><br>
+
+
+		<label class="white"  for="">SES</label>		
+		<input type="number" class="space form-control" step="0.00001" name="SES" placeholder="Enter data between 1 to 5" required="required" /><br>
+    
+		<label class="white"  for="">MMSE</label>		
+		<input type="number" class="space form-control" step="0.00001" name="MMSE" placeholder="Enter data between 4 to 30" required="required" /><br>
+   </div>
+
+<div class="gap col-md-6">
+
+		<label class="white"  for="">CDR</label>		
+		<input type="number" class="space form-control" step="0.01" name="CDR" placeholder="Enter data between 0 to 2" required="required" /><br>
+
+
+		<label class="white"  for="">eTIV</label>		
+		<input type="number" class="space form-control" step="0.01" name="eTIV" placeholder="Enter data between 1106 to 2004" required="required" /><br>
+
+		<label class="white"  for="">nWBV</label>
+		<input type="number" class="space form-control" step="0.01" name="nWBV" placeholder="Enter data between 0.6 to 0.8" required="required" /><br>
+
+
+		<label class="white"  for="">ASF</label>
+		<input type="number" class="space form-control" step="0.01" name="ASF" placeholder="Enter data between 0.8 to 1.5" required="required" /><br>
+		
+		<Input type="hidden" name="output" value="data">
+		
+</div>	
+</div>
+
+<div style="padding:2% 35%">
+  <button type="submit" class="btn btn-success btn-block" style="width:350px;padding:20px">Predict</button>		
+</div>
+      
+    </form>
+
+   <br>
+   <br>
+<div  style="background:black;padding:2% 40%">
+  <h4 class="glow"> {{ prediction_text }}</h4>
+</div>
+ </div>
+
+ {% endblock content %}
+</body>
+</html>
